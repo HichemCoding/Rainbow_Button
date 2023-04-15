@@ -1,0 +1,72 @@
+body {
+    background-color: black;
+}
+
+/*
+1ère étape
+Stylisation du bouton
+*/
+
+div {
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+}
+
+
+
+button {
+    padding: 20px 50px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    border: 0px;
+    background: transparent;
+    position: relative;
+    transition: all .2s;
+    overflow: hidden;
+    color: #fff;
+    border-radius: 30px;
+    box-shadow: 0px -0px 0px 0px rgba(143, 64, 248, .5), 0px 0px 0px 0px rgba(39, 200, 255, .5);
+}
+
+/*
+2ème étape
+Ajout d'un carré arc-en-ciel :
+
+- On créer un “carré” arc-en-ciel. Il s’agit simplement d’un carré de 400px sur 400px puis on le 
+décale sur le côté grâce aux propriétés top et left afin de récupérer la plus belle partie du dégradé.
+- Ce carré arc-en-ciel fait office de background pour notre bouton, il ne dépassera pas grâce à la 
+propriété overflow: hidden.
+*/
+
+button::after {
+    content: '';
+    width: 400px;
+    height: 400px;
+    position: absolute;
+    top: -50px;
+    left: -100px;
+    background-image: linear-gradient(225deg, #27d86c 0%, #26caf8 50%, #c625d0 100%);
+    z-index: -1;
+    transition: all .5s;
+}
+
+/*
+3ème étape
+Ajout d'un effet de survol lorsque l'utilisateur pointe son curseur sur le bouton :
+
+- On effectue une rotation de 150 degré sur notre carré arc-en-ciel pour changer le dégradé affiché sur 
+le background de notre bouton.
+- On suréleve le carré vers le haut grâce à la propriété transform puis nous ajoutons une ombre plus 
+importante grâce à la propriété box-shadow.
+*/
+
+button:hover::after {
+    transform: rotate(150deg);
+}
+
+button:hover {
+    transform: translate(0, -6px);
+    box-shadow: 10px -10px 25px 0px rgba(143, 64, 248, .25), -10px 10px 25px 0px rgba(39, 200, 255, .25);
+}
